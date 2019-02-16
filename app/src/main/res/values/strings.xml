@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lab02</string>
+
+    <string name="GetQButtonText">GET QUOTATION</string>
+    <string name="FavButtonText">FAVORITE QUOTATIONS</string>
+    <string name="SetButton">SETTINGS</string>
+    <string name="AboutButtonText">ABOUT</string>
+    <string name="About01">Descripcion de los participanetes\n\nOtras cosas\n\n2019</string>
+
+
+    <string name="main">activity_main</string>
+    <string name="title_activity_settings">SETTINGS</string>
+
+    <string name="About">ABOUT</string>
+
+    <string name="AuthorInfo">Author info</string>
+
+    <string name="authorName">Nikola_Tesla</string>
+
+    <string name="info_quotations">Hello!\nPress Refresh to get a new quotation</string>
+    <string name="sample_q">Sample quotation</string>
+    <string name="sample_a">Sample author</string>
+
+</resources>
