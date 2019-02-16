@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="callbackGetQ"
+            android:onClick="callbackQuotation"
             android:text="@string/GetQButtonText" />
 
         <Button
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="callbackFav"
+            android:onClick="callbackQuotation"
             android:text="@string/FavButtonText" />
 
         <Button
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="callbackSettings"
+            android:onClick="callbackQuotation"
             android:text="@string/SetButton" />
 
         <Button
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="callbackAbout"
+            android:onClick="callbackQuotation"
             android:text="@string/AboutButtonText" />
     </LinearLayout>
 

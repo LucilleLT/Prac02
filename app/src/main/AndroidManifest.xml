@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.martin.prac02">
 
     <application
@@ -8,15 +9,20 @@
         android:label="@string/main"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/MyStyle">
-        <activity android:name=".QuotationActivity"></activity>
-        <activity android:name=".FavoriteActivity" />
+        android:theme="@style/MyStyle"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".QuotationActivity"
+            android:label="@string/QuotationActivity"/>
+        <activity
+            android:name=".FavoriteActivity"
+            android:label="@string/FavActivity"/>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/SettingsActivity" />
         <activity
             android:name=".AboutActivity"
-            android:label="@string/About" />
+            android:label="@string/AboutActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

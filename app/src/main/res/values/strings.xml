@@ -6,10 +6,14 @@
     <string name="FavButtonText">FAVORITE QUOTATIONS</string>
     <string name="SetButton">SETTINGS</string>
     <string name="AboutButtonText">ABOUT</string>
-    <string name="About01">Descripcion de los participanetes\n\nOtras cosas\n\n2019</string>
+    <string name="About01">“Quotation Shake by\n\n Martin Bernácer Ferrer and Javier López Tadeo\n\n marberf1@inf.upv.es\njalota1@inf.upv.es\n\n2019\n\n\n\n\n\n\n\n\n\n\n\n\nhola”</string>
+    <string name="QuotationActivity">Quotation Shake</string>
+    <string name="RandomActivity">Random quotations</string>
+    <string name="FavActivity">“Favourite quotations</string>
+    <string name="SettingsActivity">Settings</string>
+    <string name="AboutActivity">About</string>
 
-
-    <string name="main">activity_main</string>
+    <string name="main">QuotationShake</string>
     <string name="title_activity_settings">SETTINGS</string>
 
     <string name="About">ABOUT</string>
