@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab02</string>
+    <string name="app_name" translatable="false">Lab02</string>
 
     <string name="GetQButtonText">GET QUOTATION</string>
     <string name="FavButtonText">FAVORITE QUOTATIONS</string>
     <string name="SetButton">SETTINGS</string>
     <string name="AboutButtonText">ABOUT</string>
-    <string name="About01">Quotation Shake by\n\n Martin Bernácer Ferrer and Javier López Tadeo\n\n marberf1@inf.upv.es\njalota1@inf.upv.es\n\n2019\n\n\n\n\n\n\n\n\n\n\n\n\nhola</string>
+    <string name="About">Quotation Shake by\n\n Martin Bernácer Ferrer and Javier López Tadeo\n\n marberf1@inf.upv.es\njalota1@inf.upv.es\n\n2019\n\n\n\n\n\n\n\n\n\n\n\n\nhola</string>
     <string name="QuotationActivity">Random quotation</string>
     <string name="FavActivity">Favourite quotations</string>
     <string name="SettingsActivity">Settings</string>
     <string name="AboutActivity">About</string>
-    <string name="main">QuotationShake</string>
-    <string name="title_activity_settings">SETTINGS</string>
-    <string name="About">ABOUT</string>
+    <string name="main" translatable="false">QuotationShake</string>
     <string name="AuthorInfo">Author info</string>
-    <string name="authorName">Nikola_Tesla</string>
+    <string name="authorName" translatable="false">Nikola_Tesla</string>
     <string name="info_quotations">Hello %1s!\nPress Refresh to get a new quotation</string>
     <string name="sample_q">This is a sample quotation</string>
     <string name="sample_a">This is a sample author</string>
-    <string name="username">Ashen One</string>
+    <string name="username" translatable="false">Ashen One</string>
 
 </resources>

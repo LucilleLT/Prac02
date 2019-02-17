@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="GetQButtonText">OBTENER CITA</string>
+    <string name="FavButtonText">CITAS FAVORITAS</string>
+    <string name="SetButton">AJUSTES</string>
+    <string name="AboutButtonText">ACERCA DE</string>
+    <string name="About">Quotation Shake por\n\n Martin Bernácer Ferrer and Javier López Tadeo\n\n marberf1@inf.upv.es\\njalota1@inf.upv.es\\n\\n2019\n\n\n\n\n\n\n\n\n\n\n\n\nhola</string>
+    <string name="QuotationActivity">Cita aleatoria</string>
+    <string name="FavActivity">Citas favoritas</string>
+    <string name="SettingsActivity">Ajustes</string>
+    <string name="AboutActivity">Acerca</string>
+    <string name="AuthorInfo">Informacion autor</string>
+    <string name="info_quotations">Hola %1s!\\nPulsa recargar para obtener una nueva cita</string>
+    <string name="sample_q">Esto es una cita de ejemplo</string>
+    <string name="sample_a">Esto es una autor de ejemplo</string>
+</resources>
