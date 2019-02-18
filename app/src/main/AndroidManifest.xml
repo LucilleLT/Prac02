@@ -11,12 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/MyStyle"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".settings_old"
+            android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
         <activity
             android:name=".QuotationActivity"
-            android:label="@string/QuotationActivity"/>
+            android:label="@string/QuotationActivity" />
         <activity
             android:name=".FavoriteActivity"
-            android:label="@string/FavActivity"/>
+            android:label="@string/FavActivity" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/SettingsActivity" />
@@ -26,8 +29,10 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

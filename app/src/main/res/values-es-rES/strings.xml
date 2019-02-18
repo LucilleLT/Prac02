@@ -13,4 +13,12 @@
     <string name="info_quotations">Hola %1s!\\nPulsa recargar para obtener una nueva cita</string>
     <string name="sample_q">Esto es una cita de ejemplo</string>
     <string name="sample_a">Esto es una autor de ejemplo</string>
+    <string name="idioma_english">Ingleh</string>
+    <string name="idioma_russian">URSS</string>
+    <string name="name_label">a</string>
+    <string name="user_name">b</string>
+    <string name="language_label">c</string>
+    <string name="request_label">d</string>
+    <string name="getb">e</string>
+    <string name="postb">f</string>
 </resources>

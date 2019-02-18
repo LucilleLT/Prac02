@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimario">#00b080</color>
+    <color name="colorPrimario">#C20000</color>
     <color name="colorPrimarioDark">#750000</color>
     <color name="colorAccent">#000000</color>
     <color name="colorTest">#aaa000</color>
     <color name="colorTes2">#FFFFFF</color>
-    <color name="colorPruebaTorre">#FF1111</color>
+    <color name="red01">#7C0000</color>
 </resources>

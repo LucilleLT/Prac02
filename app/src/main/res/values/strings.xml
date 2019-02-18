@@ -18,5 +18,13 @@
     <string name="sample_q">This is a sample quotation</string>
     <string name="sample_a">This is a sample author</string>
     <string name="username" translatable="false">Ashen One</string>
+    <string name="idioma_english">English</string>
+    <string name="idioma_russian">Russian</string>
 
+    <string name="name_label">Name that identifies the user</string>
+    <string name="user_name">Insert your name</string>
+    <string name="language_label">Choose your fighter</string>
+    <string name="request_label">HTTP Time</string>
+    <string name="getb">GET</string>
+    <string name="postb">POST</string>
 </resources>
