@@ -5,6 +5,11 @@ public class Quotation {
     private String text;
     private String author;
 
+    public Quotation(String text, String author) {
+        this.text = text;
+        this.author = author;
+    }
+
     public String getText() {
         return text;
     }

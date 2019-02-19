@@ -15,10 +15,14 @@
     <string name="sample_a">Esto es una autor de ejemplo</string>
     <string name="idioma_english">Ingleh</string>
     <string name="idioma_russian">URSS</string>
-    <string name="name_label">a</string>
-    <string name="user_name">b</string>
-    <string name="language_label">c</string>
-    <string name="request_label">d</string>
-    <string name="getb">e</string>
-    <string name="postb">f</string>
+    <string name="name_label">Nombre que identifica al usuario</string>
+    <string name="user_name">Inserta tu nombre</string>
+    <string name="language_label">Elije a tu luchador</string>
+    <string name="request_label">HTTP hora</string>
+    <string name="authorNotFound">El autor no es válido</string>
+    <string name="deleteMessage">¿Estas seguro de que quieres eliminar la cita?</string>
+    <string name="deleteTitle">Eliminar cita</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="deteled">Eliminado</string>
 </resources>
