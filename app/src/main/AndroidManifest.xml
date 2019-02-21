@@ -12,20 +12,55 @@
         android:theme="@style/MyStyle"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".settings_old"
-            android:windowSoftInputMode="stateAlwaysHidden">
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/SettingsActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.martin.prac02.MainActivity"
+                />
         </activity>
         <activity
             android:name=".QuotationActivity"
-            android:label="@string/QuotationActivity" />
+            android:label="@string/QuotationActivity"
+            android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.martin.prac02.MainActivity"
+                />
+        </activity>
         <activity
             android:name=".FavoriteActivity"
-            android:label="@string/FavActivity" />
+            android:label="@string/FavActivity"
+            android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.martin.prac02.MainActivity"
+            />
+        </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/SettingsActivity" />
+            android:label="@string/SettingsActivity"
+            android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.martin.prac02.MainActivity"
+                />
+        </activity>
         <activity
             android:name=".AboutActivity"
-            android:label="@string/AboutActivity" />
+            android:label="@string/AboutActivity"
+            android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.martin.prac02.MainActivity"
+                />
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

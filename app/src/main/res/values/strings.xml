@@ -32,4 +32,6 @@
     <string name="request_label">HTTP Time</string>
     <string name="getb" translatable="false">GET</string>
     <string name="postb" translatable="false">POST</string>
+    <string name="menu_add">Add</string>
+    <string name="menu_refresh">Refresh</string>
 </resources>

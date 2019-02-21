@@ -25,4 +25,6 @@
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="deteled">Eliminado</string>
+    <string name="menu_add">Añadir</string>
+    <string name="menu_refresh">Refrescar</string>
 </resources>
