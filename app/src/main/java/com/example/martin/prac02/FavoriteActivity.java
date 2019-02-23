@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -71,14 +73,41 @@ public class FavoriteActivity extends AppCompatActivity {
         });
     }
 
-    public void author_quote(android.view.View view){
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search="+getString(R.string.authorName)));
-
-        if(intent.resolveActivity(getPackageManager())!=null){
-             startActivity(intent);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.favourite_activity_menu, menu);
+        if(quotationAdapter.isEmpty()){
+            menu.findItem(R.id.menu_clear).setVisible(false);
         }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_clear:
+                AlertDialog.Builder builder = new AlertDialog.Builder(FavoriteActivity.this);
+                builder.setIcon(android.R.drawable.stat_sys_warning);
+                builder.setTitle(R.string.clearAllAlertTitle);
+                builder.setMessage(R.string.clearAllAlertMessage);
+                builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        quotationAdapter.clear();
+                        quotationAdapter.notifyDataSetChanged();
+                        item.setVisible(false);
+                    }
+                });
+                builder.create().show();
+
+                break;
+        }
+        return true;
     }
 
     public ArrayList<Quotation> getMockQuotations(){

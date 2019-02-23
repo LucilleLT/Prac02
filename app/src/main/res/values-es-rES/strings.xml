@@ -27,4 +27,7 @@
     <string name="deteled">Eliminado</string>
     <string name="menu_add">Añadir</string>
     <string name="menu_refresh">Refrescar</string>
+    <string name="menu_clear">Eliminar todos</string>
+    <string name="clearAllAlertMessage">¿Estas seguro de que quieres eliminar TODAS tus citas favoritas?</string>
+    <string name="clearAllAlertTitle">Eliminar favoritos</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.martin.prac02;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,18 +18,9 @@ public class QuotationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quotation);
-        ImageButton refreshQuotation = findViewById(R.id.refreshQuotationButton);
         quotationText = findViewById(R.id.quotationText);
         authorText = findViewById(R.id.authorText);
         quotationText.setText(String.format(getResources().getString(R.string.info_quotations), getResources().getString(R.string.username)));
-
-        refreshQuotation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                quotationText.setText(getResources().getString(R.string.sample_q));
-                authorText.setText(getResources().getString(R.string.sample_a));
-            }
-        });
     }
 
     @Override
@@ -41,12 +33,11 @@ public class QuotationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_add:
-                return true;
+                break;
             case R.id.menu_refresh:
                 quotationText.setText(getResources().getString(R.string.sample_q));
                 authorText.setText(getResources().getString(R.string.sample_a));
                 break;
-
         }
         return true;
     }

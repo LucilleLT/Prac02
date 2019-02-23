@@ -13,6 +13,7 @@
 
         <TextView
             android:id="@+id/user_label"
+            style="@style/customStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -21,13 +22,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/name_label"
-            android:textColor="@color/red01"
             app:layout_constraintEnd_toStartOf="@+id/edit_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/edit_name"
+            style="@style/customStyle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -44,6 +45,7 @@
 
         <TextView
             android:id="@+id/language_label"
+            style="@style/customStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -52,13 +54,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/language_label"
-            android:textColor="@color/red01"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_name" />
 
         <Spinner
             android:id="@+id/language_spinner"
+            style="@style/customStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -73,6 +75,7 @@
 
         <TextView
             android:id="@+id/request_label"
+            style="@style/customStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -81,13 +84,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/request_label"
-            android:textColor="@color/red01"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/language_spinner" />
 
         <RadioGroup
             android:id="@+id/request_radio_grup"
+            style="@style/customStyle"
             android:layout_width="match_parent"
             android:layout_height="129dp"
             android:layout_marginStart="8dp"
@@ -101,6 +104,7 @@
 
             <RadioButton
                 android:id="@+id/post_button"
+                style="@style/customStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -109,6 +113,7 @@
 
             <RadioButton
                 android:id="@+id/get_button"
+                style="@style/customStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

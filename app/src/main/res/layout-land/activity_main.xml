@@ -8,6 +8,8 @@
 
     <Button
         android:id="@+id/GetQButton"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/custom_text_color"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -26,6 +28,8 @@
 
     <Button
         android:id="@+id/FavButton"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/custom_text_color"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
@@ -44,6 +48,8 @@
 
     <Button
         android:id="@+id/SettingsButton"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/custom_text_color"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -62,6 +68,8 @@
 
     <Button
         android:id="@+id/AboutButton"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/custom_text_color"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"

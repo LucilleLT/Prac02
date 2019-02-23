@@ -34,4 +34,7 @@
     <string name="postb" translatable="false">POST</string>
     <string name="menu_add">Add</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="menu_clear">Clear all</string>
+    <string name="clearAllAlertMessage">Are you sure that you want to delete ALL your favourte quotations?</string>
+    <string name="clearAllAlertTitle">Clear all favourites</string>
 </resources>
