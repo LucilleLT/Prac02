@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
-        android:defaultValue="Default value"
-        android:key="name_text_preference_1"
+        android:key="name"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Enter your name" />
+        android:title="@string/username"
+        android:summary="@string/username_description"/>
     <PreferenceCategory android:title="Preference category">
 
+        <ListPreference
+            android:entries="@array/language"
+            android:entryValues="@array/language"
+            android:key="language_field"
+            android:title="@string/quotation_language"
+            android:summary="@string/quotation_language_description"/>
+        <ListPreference
+            android:entries="@array/http_request"
+            android:entryValues="@array/http_request"
+            android:key="request_field"
+            android:title="@string/request_method"
+            android:summary="@string/request_method_description"/>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -14,17 +14,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.martin.prac02.databases.QuotationDatabase;
+
 import java.util.ArrayList;
 
 public class FavoriteActivity extends AppCompatActivity {
 
     QuotationAdapter quotationAdapter;
+    QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
-        quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, getMockQuotations());
+        quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, quotationDatabase.getQuotations());
         ListView quotationList = findViewById(R.id.quotation_list);
         quotationList.setAdapter(quotationAdapter);
         quotationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

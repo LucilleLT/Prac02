@@ -15,8 +15,8 @@
     <string name="AuthorInfo">Author info</string>
     <string name="authorName" translatable="false">Nikola_Tesla</string>
     <string name="info_quotations">Hello %1s! \nPress Refresh to get a new quotation</string>
-    <string name="sample_q">This is a sample quotation</string>
-    <string name="sample_a">This is a sample author</string>
+    <string name="sample_q">This is a sample quotation %1$d</string>
+    <string name="sample_a">This is a sample author %1$d</string>
     <string name="idioma_english">English</string>
     <string name="idioma_russian">Russian</string>
     <string name="authorNotFound">The author is not valid</string>
