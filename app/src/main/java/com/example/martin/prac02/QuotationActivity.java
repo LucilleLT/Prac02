@@ -65,7 +65,6 @@ public class QuotationActivity extends AppCompatActivity {
                 break;
             case R.id.menu_refresh:
                 quotationsCount++;
-
                 quotationText.setText(String.format(getResources().getString(R.string.sample_q), quotationsCount));
                 authorText.setText(String.format(getResources().getString(R.string.sample_a), quotationsCount));
                 Quotation quotation = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
