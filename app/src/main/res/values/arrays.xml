@@ -4,4 +4,9 @@
         <item>@string/idioma_english</item>
         <item>@string/idioma_russian</item>
     </string-array>
+
+    <string-array name="http_request">
+        <item>@string/get</item>
+        <item>@string/post</item>
+    </string-array>
 </resources>

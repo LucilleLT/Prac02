@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.SettingsButton:
                 //intent = new Intent(this, SettingsActivity.class);
-                intent = new Intent(this, settings_old.class);
+                intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.AboutButton:

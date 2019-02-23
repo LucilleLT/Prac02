@@ -1,5 +1,7 @@
 package com.example.martin.prac02;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,10 +19,11 @@ public class QuotationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_quotation);
         quotationText = findViewById(R.id.quotationText);
         authorText = findViewById(R.id.authorText);
-        quotationText.setText(String.format(getResources().getString(R.string.info_quotations), getResources().getString(R.string.username)));
+        quotationText.setText(String.format(getResources().getString(R.string.info_quotations), prefs.getString("name","")));
     }
 
     @Override

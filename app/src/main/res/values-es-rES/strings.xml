@@ -10,15 +10,11 @@
     <string name="SettingsActivity">Ajustes</string>
     <string name="AboutActivity">Acerca</string>
     <string name="AuthorInfo">Informacion autor</string>
-    <string name="info_quotations">Hola %1s!\\nPulsa recargar para obtener una nueva cita</string>
+    <string name="info_quotations">Hola %1s! \nPulsa recargar para obtener una nueva cita</string>
     <string name="sample_q">Esto es una cita de ejemplo</string>
     <string name="sample_a">Esto es una autor de ejemplo</string>
     <string name="idioma_english">Ingleh</string>
     <string name="idioma_russian">URSS</string>
-    <string name="name_label">Nombre que identifica al usuario</string>
-    <string name="user_name">Inserta tu nombre</string>
-    <string name="language_label">Elije a tu luchador</string>
-    <string name="request_label">HTTP hora</string>
     <string name="authorNotFound">El autor no es válido</string>
     <string name="deleteMessage">¿Estas seguro de que quieres eliminar la cita?</string>
     <string name="deleteTitle">Eliminar cita</string>
