@@ -9,4 +9,9 @@
         <item>@string/get</item>
         <item>@string/post</item>
     </string-array>
+
+    <string-array name="database_acecess">
+        <item>@string/room</item>
+        <item>@string/sqliteopenhelper</item>
+    </string-array>
 </resources>

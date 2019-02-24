@@ -65,6 +65,7 @@ public class FavoriteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Quotation item = quotationAdapter.getItem(position);
+                        quotationDatabase.deleteQuotations(item);
                         quotationAdapter.remove(item);
                         quotationAdapter.notifyDataSetChanged();
                         Toast.makeText(FavoriteActivity.this, R.string.deteled, Toast.LENGTH_SHORT).show();
@@ -101,6 +102,7 @@ public class FavoriteActivity extends AppCompatActivity {
                 builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        quotationDatabase.deleteAllQuotations();
                         quotationAdapter.clear();
                         quotationAdapter.notifyDataSetChanged();
                         item.setVisible(false);

@@ -1,9 +1,11 @@
 package com.example.martin.prac02.databases;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.martin.prac02.Quotation;
 
@@ -40,14 +42,39 @@ public class QuotationDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         List<Quotation> quotationList = new ArrayList<>();
         Cursor cursor = db.query("quotation_table", new String[]{"quote", "author"}, null, null, null, null, null);
-        while(!cursor.isLast()){
+
+        if(cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            while (!cursor.isLast()) {
+                quotationList.add(new Quotation(cursor.getString(0), cursor.getString(1)));
+                cursor.moveToNext();
+            }
             quotationList.add(new Quotation(cursor.getString(0), cursor.getString(1)));
-            cursor.moveToNext();
         }
-        quotationList.add(new Quotation(cursor.getString(0), cursor.getString(1)));
         cursor.close();
         db.close();
         return quotationList;
+    }
+
+    public void insertQuotation(Quotation quotation){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues item = new ContentValues();
+        item.put("quote", quotation.getText());
+        item.put("author", quotation.getAuthor());
+        db.insert("quotation_table", null, item);
+        db.close();
+    }
+
+    public void deleteQuotations(Quotation quotation){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("quotation_table","quote=?", new String[]{quotation.getText()});
+        db.close();
+    }
+
+    public void deleteAllQuotations(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("quotation_table",null, null);
+        db.close();
     }
 
     public boolean exists(Quotation quotation){

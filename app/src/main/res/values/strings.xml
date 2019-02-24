@@ -43,6 +43,10 @@
     <string name="database_access_method_description" translatable="false">Database will access following the selected method</string>
     <string name="get" translatable="false">GET</string>
     <string name="post" translatable="false">POST</string>
+    <string name="room" translatable="false">Room</string>
+    <string name="sqliteopenhelper" translatable="false">SQLiteOpenHelper</string>
+    <string name="database_access_title" translatable="false">Database access method</string>
+    <string name="database_access_description" translatable="false">Database will be accessed following the selected method</string>
 
 
 </resources>

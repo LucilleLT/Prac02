@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
+        android:defaultValue="DefaultUsername"
         android:key="name"
         android:selectAllOnFocus="true"
         android:singleLine="true"
@@ -9,16 +10,27 @@
     <PreferenceCategory android:title="Preference category">
 
         <ListPreference
+            android:defaultValue="1"
             android:entries="@array/language"
             android:entryValues="@array/language"
             android:key="language_field"
             android:title="@string/quotation_language"
             android:summary="@string/quotation_language_description"/>
         <ListPreference
+            android:defaultValue="1"
             android:entries="@array/http_request"
             android:entryValues="@array/http_request"
             android:key="request_field"
             android:title="@string/request_method"
             android:summary="@string/request_method_description"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Preference category">
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/database_acecess"
+            android:entryValues="@array/database_acecess"
+            android:key="database_access"
+            android:title="@string/database_access_title"
+            android:summary="@string/database_access_description"/>
     </PreferenceCategory>
 </PreferenceScreen>

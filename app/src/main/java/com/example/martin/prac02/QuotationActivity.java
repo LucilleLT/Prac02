@@ -62,13 +62,15 @@ public class QuotationActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_add:
                 quotationMenu.findItem(R.id.menu_add).setVisible(false);
+                Quotation quotationIns = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
+                quotationDatabase.insertQuotation(quotationIns);
                 break;
             case R.id.menu_refresh:
                 quotationsCount++;
                 quotationText.setText(String.format(getResources().getString(R.string.sample_q), quotationsCount));
                 authorText.setText(String.format(getResources().getString(R.string.sample_a), quotationsCount));
-                Quotation quotation = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
-                quotationMenu.findItem(R.id.menu_add).setVisible(!quotationDatabase.exists(quotation));
+                Quotation quotationGet = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
+                quotationMenu.findItem(R.id.menu_add).setVisible(!quotationDatabase.exists(quotationGet));
                 break;
         }
         return true;
