@@ -14,10 +14,15 @@ import java.util.List;
 
 @Dao
 public interface QuotationDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void addQuotation(Quotation quotation);
     @Query("SELECT * FROM quotation_table")
     List<Quotation> getQuotations();
     @Query("SELECT * FROM quotation_table WHERE quote = :name")
     Quotation getQuotation(String name);
     @Query("DELETE FROM quotation_table")
     void deleteAllQuotations();
+
+    @Delete
+    void deleteQuotation(Quotation quotation);
 }

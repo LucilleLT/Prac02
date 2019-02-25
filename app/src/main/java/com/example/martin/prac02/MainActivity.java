@@ -1,16 +1,25 @@
 package com.example.martin.prac02;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.martin.prac02.databases.QuotationRoom;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+            public class MainActivity extends AppCompatActivity {
+
+                @Override
+                protected void onCreate(Bundle savedInstanceState) {
+                    super.onCreate(savedInstanceState);
+                    setContentView(R.layout.activity_main);
+
+                    if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("first_run",true)) {
+                        QuotationRoom.getInstance(this).quotationDao().getQuotations();
+                        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("first_run",false).apply();
+
+                    }
     }
 
 

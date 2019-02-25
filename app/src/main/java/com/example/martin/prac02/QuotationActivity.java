@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.martin.prac02.databases.QuotationDatabase;
+import com.example.martin.prac02.databases.QuotationRoom;
 
 public class QuotationActivity extends AppCompatActivity {
 
@@ -22,7 +23,8 @@ public class QuotationActivity extends AppCompatActivity {
     Menu quotationMenu;
     boolean addState;
     QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
-
+    QuotationRoom quotationRoom = QuotationRoom.getInstance(this);
+    boolean using_room = "room".equals(PreferenceManager.getDefaultSharedPreferences(this).getString("database_access","room"));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,21 +61,30 @@ public class QuotationActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_add:
                 quotationMenu.findItem(R.id.menu_add).setVisible(false);
                 Quotation quotationIns = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
-                quotationDatabase.insertQuotation(quotationIns);
+                if (using_room) {
+                    quotationRoom.quotationDao().addQuotation(quotationIns);
+                } else {
+                    quotationDatabase.insertQuotation(quotationIns);
+                }
                 break;
             case R.id.menu_refresh:
                 quotationsCount++;
                 quotationText.setText(String.format(getResources().getString(R.string.sample_q), quotationsCount));
                 authorText.setText(String.format(getResources().getString(R.string.sample_a), quotationsCount));
                 Quotation quotationGet = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
-                quotationMenu.findItem(R.id.menu_add).setVisible(!quotationDatabase.exists(quotationGet));
+                if(using_room){
+                    boolean exist = null != quotationRoom.quotationDao().getQuotation(quotationGet.getText());
+                    quotationMenu.findItem(R.id.menu_add).setVisible(!exist);
+                } else {
+                    quotationMenu.findItem(R.id.menu_add).setVisible(!quotationDatabase.exists(quotationGet));
+                }
                 break;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 }

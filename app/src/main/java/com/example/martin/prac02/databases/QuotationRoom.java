@@ -19,6 +19,9 @@ public abstract class QuotationRoom extends RoomDatabase {
         return quotationRoom;
     }
 
-    public QuotationDao quotationDao;
+    public abstract QuotationDao quotationDao();
+
+
 
 }
+

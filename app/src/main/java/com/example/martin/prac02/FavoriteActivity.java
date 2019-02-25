@@ -3,6 +3,7 @@ package com.example.martin.prac02;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.martin.prac02.databases.QuotationDatabase;
+import com.example.martin.prac02.databases.QuotationRoom;
 
 import java.util.ArrayList;
 
@@ -23,11 +25,18 @@ public class FavoriteActivity extends AppCompatActivity {
     QuotationAdapter quotationAdapter;
     QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
 
+    QuotationRoom quotationRoom = QuotationRoom.getInstance(this);
+    boolean using_room = "room".equals(PreferenceManager.getDefaultSharedPreferences(this).getString("database_access","room"));
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
-        quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, quotationDatabase.getQuotations());
+        if(using_room) {
+            quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, quotationRoom.quotationDao().getQuotations());
+        } else {
+            quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, quotationDatabase.getQuotations());
+        }
         ListView quotationList = findViewById(R.id.quotation_list);
         quotationList.setAdapter(quotationAdapter);
         quotationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,7 +74,11 @@ public class FavoriteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Quotation item = quotationAdapter.getItem(position);
-                        quotationDatabase.deleteQuotations(item);
+                        if(using_room) {
+                            quotationRoom.quotationDao().deleteQuotation(item);
+                        } else {
+                            quotationDatabase.deleteQuotations(item);
+                        }
                         quotationAdapter.remove(item);
                         quotationAdapter.notifyDataSetChanged();
                         Toast.makeText(FavoriteActivity.this, R.string.deteled, Toast.LENGTH_SHORT).show();
@@ -102,7 +115,11 @@ public class FavoriteActivity extends AppCompatActivity {
                 builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        quotationDatabase.deleteAllQuotations();
+                        if(using_room){
+                            quotationRoom.quotationDao().deleteAllQuotations();
+                        } else {
+                            quotationDatabase.deleteAllQuotations();
+                        }
                         quotationAdapter.clear();
                         quotationAdapter.notifyDataSetChanged();
                         item.setVisible(false);
@@ -112,7 +129,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
                 break;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     public ArrayList<Quotation> getMockQuotations(){
