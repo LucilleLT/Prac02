@@ -31,22 +31,22 @@
     <string name="clearAllAlertMessage">Are you sure that you want to delete ALL your favourte quotations?</string>
     <string name="clearAllAlertTitle">Clear all favourites</string>
 
-    <string name="username" translatable="false">User name</string>
-    <string name="username_description" translatable="false">Name idetifies the user</string>
-    <string name="web_service" translatable="false">Web service</string>
-    <string name="quotation_language" translatable="false">Quotation language</string>
-    <string name="quotation_language_description" translatable="false">Quotation will be received in the selected language</string>
-    <string name="request_method" translatable="false">HTTP Request method</string>
-    <string name="request_method_description" translatable="false">Request will be performed using the selected HTTP method</string>
-    <string name="database" translatable="false">Database</string>
-    <string name="database_access_method" translatable="false">Database access method</string>
-    <string name="database_access_method_description" translatable="false">Database will access following the selected method</string>
+    <string name="username">User name</string>
+    <string name="username_description">Name idetifies the user</string>
+    <string name="web_service">Web service</string>
+    <string name="quotation_language">Quotation language</string>
+    <string name="quotation_language_description">Quotation will be received in the selected language</string>
+    <string name="request_method">HTTP Request method</string>
+    <string name="request_method_description">Request will be performed using the selected HTTP method</string>
+    <string name="database">Database</string>
+    <string name="database_access_method">Database access method</string>
+    <string name="database_access_method_description">Database will access following the selected method</string>
     <string name="get" translatable="false">GET</string>
     <string name="post" translatable="false">POST</string>
     <string name="room" translatable="false">Room</string>
     <string name="sqliteopenhelper" translatable="false">SQLiteOpenHelper</string>
-    <string name="database_access_title" translatable="false">Database access method</string>
-    <string name="database_access_description" translatable="false">Database will be accessed following the selected method</string>
+    <string name="database_access_title">Database access method</string>
+    <string name="database_access_description">Database will be accessed following the selected method</string>
 
 
 </resources>
