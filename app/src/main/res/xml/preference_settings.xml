@@ -10,27 +10,30 @@
     <PreferenceCategory android:title="Preference category">
 
         <ListPreference
-            android:defaultValue="1"
+
             android:entries="@array/language"
             android:entryValues="@array/language"
             android:key="language_field"
             android:title="@string/quotation_language"
-            android:summary="@string/quotation_language_description"/>
+            android:summary="@string/quotation_language_description"
+            android:defaultValue="@string/idioma_english"/>
         <ListPreference
-            android:defaultValue="1"
+
             android:entries="@array/http_request"
             android:entryValues="@array/http_request"
             android:key="request_field"
             android:title="@string/request_method"
-            android:summary="@string/request_method_description"/>
+            android:summary="@string/request_method_description"
+            android:defaultValue="@string/get"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="Preference category">
         <ListPreference
-            android:defaultValue="1"
+
             android:entries="@array/database_acecess"
             android:entryValues="@array/database_acecess"
             android:key="database_access"
             android:title="@string/database_access_title"
-            android:summary="@string/database_access_description"/>
+            android:summary="@string/database_access_description"
+            android:defaultValue="@string/room"/>
     </PreferenceCategory>
 </PreferenceScreen>

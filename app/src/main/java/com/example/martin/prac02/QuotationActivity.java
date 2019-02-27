@@ -22,14 +22,15 @@ public class QuotationActivity extends AppCompatActivity {
     TextView authorText;
     Menu quotationMenu;
     boolean addState;
+    String using_room;
     QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
-    QuotationRoom quotationRoom = QuotationRoom.getInstance(this);
-    boolean using_room = "room".equals(PreferenceManager.getDefaultSharedPreferences(this).getString("database_access","room"));
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_quotation);
+        using_room = prefs.getString("database_access","room");
         quotationText = findViewById(R.id.quotationText);
         authorText = findViewById(R.id.authorText);
         quotationText.setText(String.format(getResources().getString(R.string.info_quotations), prefs.getString("name","")));
@@ -65,8 +66,8 @@ public class QuotationActivity extends AppCompatActivity {
             case R.id.menu_add:
                 quotationMenu.findItem(R.id.menu_add).setVisible(false);
                 Quotation quotationIns = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
-                if (using_room) {
-                    quotationRoom.quotationDao().addQuotation(quotationIns);
+                if (using_room.equals("Room")) {
+                    QuotationRoom.getInstance(this).quotationDao().addQuotation(quotationIns);
                 } else {
                     quotationDatabase.insertQuotation(quotationIns);
                 }
@@ -76,10 +77,13 @@ public class QuotationActivity extends AppCompatActivity {
                 quotationText.setText(String.format(getResources().getString(R.string.sample_q), quotationsCount));
                 authorText.setText(String.format(getResources().getString(R.string.sample_a), quotationsCount));
                 Quotation quotationGet = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
-                if(using_room){
-                    boolean exist = null != quotationRoom.quotationDao().getQuotation(quotationGet.getText());
+                Log.d("tag1", using_room);
+                if(using_room.equals("Room")){
+                    Log.d("tag1", "HELLO THERE: ");
+                    boolean exist = null != QuotationRoom.getInstance(this).quotationDao().getQuotation(quotationGet.getText());
                     quotationMenu.findItem(R.id.menu_add).setVisible(!exist);
                 } else {
+                    Log.d("tag1", "HELLO THERE33333: ");
                     quotationMenu.findItem(R.id.menu_add).setVisible(!quotationDatabase.exists(quotationGet));
                 }
                 break;

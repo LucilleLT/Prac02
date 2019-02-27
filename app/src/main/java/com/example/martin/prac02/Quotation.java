@@ -14,6 +14,7 @@ public class Quotation {
     private String text;
     @ColumnInfo(name = "author")
     private String author;
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -42,5 +43,11 @@ public class Quotation {
         this.author = author;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }

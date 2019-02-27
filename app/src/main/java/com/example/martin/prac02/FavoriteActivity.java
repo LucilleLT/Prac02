@@ -2,6 +2,7 @@ package com.example.martin.prac02;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
@@ -25,15 +26,18 @@ public class FavoriteActivity extends AppCompatActivity {
     QuotationAdapter quotationAdapter;
     QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
 
-    QuotationRoom quotationRoom = QuotationRoom.getInstance(this);
-    boolean using_room = "room".equals(PreferenceManager.getDefaultSharedPreferences(this).getString("database_access","room"));
+    String using_room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
-        if(using_room) {
-            quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, quotationRoom.quotationDao().getQuotations());
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        using_room = sharedPreferences.getString("database_access","room");
+
+        if(using_room.equals("Room")) {
+            quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, QuotationRoom.getInstance(this).quotationDao().getQuotations());
         } else {
             quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, quotationDatabase.getQuotations());
         }
@@ -74,8 +78,8 @@ public class FavoriteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Quotation item = quotationAdapter.getItem(position);
-                        if(using_room) {
-                            quotationRoom.quotationDao().deleteQuotation(item);
+                        if(using_room.equals("Room")) {
+                            QuotationRoom.getInstance(getApplicationContext()).quotationDao().deleteQuotation(item);
                         } else {
                             quotationDatabase.deleteQuotations(item);
                         }
@@ -115,8 +119,8 @@ public class FavoriteActivity extends AppCompatActivity {
                 builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(using_room){
-                            quotationRoom.quotationDao().deleteAllQuotations();
+                        if(using_room.equals("Room")){
+                            QuotationRoom.getInstance(getApplicationContext()).quotationDao().deleteAllQuotations();
                         } else {
                             quotationDatabase.deleteAllQuotations();
                         }

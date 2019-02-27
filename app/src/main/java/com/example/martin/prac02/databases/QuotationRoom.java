@@ -4,6 +4,7 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
+import android.util.Log;
 
 import com.example.martin.prac02.Quotation;
 
@@ -14,7 +15,8 @@ public abstract class QuotationRoom extends RoomDatabase {
 
     public synchronized static QuotationRoom getInstance(Context context) {
         if (quotationRoom == null) {
-            quotationRoom = Room.databaseBuilder(context, QuotationRoom.class, "contact_database").allowMainThreadQueries().build();
+
+            quotationRoom = Room.databaseBuilder(context, QuotationRoom.class, "quotation_database").allowMainThreadQueries().build();
         }
         return quotationRoom;
     }
