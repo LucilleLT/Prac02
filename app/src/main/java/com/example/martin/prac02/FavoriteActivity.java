@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +19,14 @@ import android.widget.Toast;
 
 import com.example.martin.prac02.databases.QuotationDatabase;
 import com.example.martin.prac02.databases.QuotationRoom;
+import com.example.martin.prac02.tasks.QuotationAsyncTask;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FavoriteActivity extends AppCompatActivity {
 
+    Menu menuClear;
     QuotationAdapter quotationAdapter;
     QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
 
@@ -36,11 +40,8 @@ public class FavoriteActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         using_room = sharedPreferences.getString("database_access","room");
 
-        if(using_room.equals("Room")) {
-            quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, QuotationRoom.getInstance(this).quotationDao().getQuotations());
-        } else {
-            quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, quotationDatabase.getQuotations());
-        }
+        quotationAdapter = new QuotationAdapter(this, R.layout.quotation_list_row, new ArrayList<Quotation>());
+
         ListView quotationList = findViewById(R.id.quotation_list);
         quotationList.setAdapter(quotationAdapter);
         quotationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -77,14 +78,22 @@ public class FavoriteActivity extends AppCompatActivity {
                 builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Quotation item = quotationAdapter.getItem(position);
-                        if(using_room.equals("Room")) {
-                            QuotationRoom.getInstance(getApplicationContext()).quotationDao().deleteQuotation(item);
-                        } else {
-                            quotationDatabase.deleteQuotations(item);
-                        }
+                        final Quotation item = quotationAdapter.getItem(position);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(using_room.equals("Room")) {
+                                    QuotationRoom.getInstance(getApplicationContext()).quotationDao().deleteQuotation(item);
+                                } else {
+                                    quotationDatabase.deleteQuotations(item);
+                                }
+                            }
+                        }).start();
                         quotationAdapter.remove(item);
                         quotationAdapter.notifyDataSetChanged();
+                        if(quotationAdapter.isEmpty()){
+                            menuClear.findItem(R.id.menu_clear).setVisible(false);
+                        }
                         Toast.makeText(FavoriteActivity.this, R.string.deteled, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -92,14 +101,19 @@ public class FavoriteActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        menuClear = menu;
         getMenuInflater().inflate(R.menu.favourite_activity_menu, menu);
         if(quotationAdapter.isEmpty()){
             menu.findItem(R.id.menu_clear).setVisible(false);
         }
+        QuotationAsyncTask quotationAsyncTask = new QuotationAsyncTask(this);
+        quotationAsyncTask.execute(using_room.equals("Room"));
         return true;
     }
 
@@ -119,11 +133,16 @@ public class FavoriteActivity extends AppCompatActivity {
                 builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(using_room.equals("Room")){
-                            QuotationRoom.getInstance(getApplicationContext()).quotationDao().deleteAllQuotations();
-                        } else {
-                            quotationDatabase.deleteAllQuotations();
-                        }
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(using_room.equals("Room")){
+                                    QuotationRoom.getInstance(getApplicationContext()).quotationDao().deleteAllQuotations();
+                                } else {
+                                    quotationDatabase.deleteAllQuotations();
+                                }
+                            }
+                        }).start();
                         quotationAdapter.clear();
                         quotationAdapter.notifyDataSetChanged();
                         item.setVisible(false);
@@ -151,4 +170,12 @@ public class FavoriteActivity extends AppCompatActivity {
         return quotationList;
     }
 
+    public void setQuotationAdapter(List<Quotation> list){
+        quotationAdapter.addAll(list);
+        quotationAdapter.notifyDataSetChanged();
+        if(!quotationAdapter.isEmpty()){
+            Log.d("tag1", "setQuotationAdapter: " + menuClear.findItem(R.id.menu_clear));
+            menuClear.findItem(R.id.menu_clear).setVisible(true);
+        }
+    }
 }

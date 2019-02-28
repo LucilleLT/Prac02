@@ -1,6 +1,9 @@
 package com.example.martin.prac02;
 
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,13 +26,28 @@ public class QuotationActivity extends AppCompatActivity {
     Menu quotationMenu;
     boolean addState;
     String using_room;
-    QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
+    Handler handler;
+
+
+
+        QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.activity_quotation);
+        handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message inputMessage) {
+                if(inputMessage.getData().getBoolean("exists")){
+                    quotationMenu.findItem(R.id.menu_add).setVisible(false);
+                }else{
+                    quotationMenu.findItem(R.id.menu_add).setVisible(true);
+
+                }
+            }
+        };
         using_room = prefs.getString("database_access","room");
         quotationText = findViewById(R.id.quotationText);
         authorText = findViewById(R.id.authorText);
@@ -65,27 +83,37 @@ public class QuotationActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_add:
                 quotationMenu.findItem(R.id.menu_add).setVisible(false);
-                Quotation quotationIns = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
-                if (using_room.equals("Room")) {
-                    QuotationRoom.getInstance(this).quotationDao().addQuotation(quotationIns);
-                } else {
-                    quotationDatabase.insertQuotation(quotationIns);
-                }
+                final Quotation quotationIns = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (using_room.equals("Room")) {
+                            QuotationRoom.getInstance(getApplicationContext()).quotationDao().addQuotation(quotationIns);
+                        } else {
+                            quotationDatabase.insertQuotation(quotationIns);
+                        }
+                    }
+                }).start();
                 break;
             case R.id.menu_refresh:
                 quotationsCount++;
                 quotationText.setText(String.format(getResources().getString(R.string.sample_q), quotationsCount));
                 authorText.setText(String.format(getResources().getString(R.string.sample_a), quotationsCount));
-                Quotation quotationGet = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
-                Log.d("tag1", using_room);
-                if(using_room.equals("Room")){
-                    Log.d("tag1", "HELLO THERE: ");
-                    boolean exist = null != QuotationRoom.getInstance(this).quotationDao().getQuotation(quotationGet.getText());
-                    quotationMenu.findItem(R.id.menu_add).setVisible(!exist);
-                } else {
-                    Log.d("tag1", "HELLO THERE33333: ");
-                    quotationMenu.findItem(R.id.menu_add).setVisible(!quotationDatabase.exists(quotationGet));
-                }
+                final Quotation quotationGet = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Message message = Message.obtain(handler);
+                        if(using_room.equals("Room")){
+                            boolean exists = null != QuotationRoom.getInstance(getApplicationContext()).quotationDao().getQuotation(quotationGet.getText());
+                            message.getData().putBoolean("exists", exists);
+                        } else {
+                            message.getData().putBoolean("exists",quotationDatabase.exists(quotationGet));
+                        }
+                        Log.d("tag1", "run: " + message);
+                        message.sendToTarget();
+                    }
+                }).start();
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -16,7 +16,7 @@ public abstract class QuotationRoom extends RoomDatabase {
     public synchronized static QuotationRoom getInstance(Context context) {
         if (quotationRoom == null) {
 
-            quotationRoom = Room.databaseBuilder(context, QuotationRoom.class, "quotation_database").allowMainThreadQueries().build();
+            quotationRoom = Room.databaseBuilder(context, QuotationRoom.class, "quotation_database").build();
         }
         return quotationRoom;
     }

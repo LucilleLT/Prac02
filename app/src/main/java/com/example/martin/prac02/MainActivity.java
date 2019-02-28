@@ -16,7 +16,12 @@ import com.example.martin.prac02.databases.QuotationRoom;
                     setContentView(R.layout.activity_main);
 
                     if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("first_run",true)) {
-                        QuotationRoom.getInstance(this).quotationDao().getQuotations();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                QuotationRoom.getInstance(getApplicationContext()).quotationDao().getQuotations();
+                            }
+                        }).start();
                         PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("first_run",false).apply();
 
                     }
