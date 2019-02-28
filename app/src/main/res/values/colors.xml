@@ -6,6 +6,7 @@
     <color name="colorTest">#aaa000</color>
     <color name="colorTes2">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="lightGrey">#BEBEBE</color>
     <color name="black">#000000</color>
     <color name="red01">#7C0000</color>
 </resources>

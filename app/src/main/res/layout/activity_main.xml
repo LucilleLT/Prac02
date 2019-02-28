@@ -15,7 +15,7 @@
 
         <Button
             android:id="@+id/GetQButton"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/button_effect"
             android:textColor="@color/custom_text_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
