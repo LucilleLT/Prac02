@@ -6,13 +6,17 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
+
 @Entity(tableName = "quotation_table", indices = {@Index(value = {"quote"}, unique = true)})
 public class Quotation {
 
     @NonNull
     @ColumnInfo(name = "quote")
+    @SerializedName("quoteText")
     private String text;
     @ColumnInfo(name = "author")
+    @SerializedName("quoteAuthor")
     private String author;
 
     @PrimaryKey(autoGenerate = true)

@@ -1,6 +1,8 @@
 package com.example.martin.prac02;
 
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -17,10 +19,10 @@ import android.widget.Toast;
 
 import com.example.martin.prac02.databases.QuotationDatabase;
 import com.example.martin.prac02.databases.QuotationRoom;
+import com.example.martin.prac02.tasks.QuotationHttpAsyncTask;
 
 public class QuotationActivity extends AppCompatActivity {
 
-    int quotationsCount = 0;
     TextView quotationText;
     TextView authorText;
     Menu quotationMenu;
@@ -28,9 +30,7 @@ public class QuotationActivity extends AppCompatActivity {
     String using_room;
     Handler handler;
 
-
-
-        QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
+    QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,12 @@ public class QuotationActivity extends AppCompatActivity {
         handler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message inputMessage) {
+                quotationText.setText(inputMessage.getData().getString("quotationText"));
+                authorText.setText(inputMessage.getData().getString("authorText"));
                 if(inputMessage.getData().getBoolean("exists")){
                     quotationMenu.findItem(R.id.menu_add).setVisible(false);
                 }else{
                     quotationMenu.findItem(R.id.menu_add).setVisible(true);
-
                 }
             }
         };
@@ -53,7 +54,6 @@ public class QuotationActivity extends AppCompatActivity {
         authorText = findViewById(R.id.authorText);
         quotationText.setText(String.format(getResources().getString(R.string.info_quotations), prefs.getString("name","")));
         if(savedInstanceState != null){
-            quotationsCount = savedInstanceState.getInt("quotationsCount");
             quotationText.setText(savedInstanceState.getString("quotation"));
             authorText.setText(savedInstanceState.getString("author"));
             addState = savedInstanceState.getBoolean("addState");
@@ -65,7 +65,6 @@ public class QuotationActivity extends AppCompatActivity {
         super.onSaveInstanceState(bundle);
         bundle.putString("quotation", quotationText.getText().toString());
         bundle.putString("author", authorText.getText().toString());
-        bundle.putInt("quotationsCount", quotationsCount);
         bundle.putBoolean("addState", quotationMenu.findItem(R.id.menu_add).isVisible());
     }
 
@@ -96,27 +95,52 @@ public class QuotationActivity extends AppCompatActivity {
                 }).start();
                 break;
             case R.id.menu_refresh:
-                quotationsCount++;
-                quotationText.setText(String.format(getResources().getString(R.string.sample_q), quotationsCount));
-                authorText.setText(String.format(getResources().getString(R.string.sample_a), quotationsCount));
-                final Quotation quotationGet = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Message message = Message.obtain(handler);
-                        if(using_room.equals("Room")){
-                            boolean exists = null != QuotationRoom.getInstance(getApplicationContext()).quotationDao().getQuotation(quotationGet.getText());
-                            message.getData().putBoolean("exists", exists);
-                        } else {
-                            message.getData().putBoolean("exists",quotationDatabase.exists(quotationGet));
-                        }
-                        Log.d("tag1", "run: " + message);
-                        message.sendToTarget();
-                    }
-                }).start();
+                //final Quotation quotationGet = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
+                if(networkState()){
+                    QuotationHttpAsyncTask quotationHttpAsyncTask = new QuotationHttpAsyncTask(this);
+                    quotationHttpAsyncTask.execute();
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public void hideMenuItems(){
+        quotationMenu.findItem(R.id.menu_refresh).setVisible(false);
+        quotationMenu.findItem(R.id.menu_add).setVisible(false);
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+    }
+
+    public void showMenuItems(final Quotation quotation){
+        quotationMenu.findItem(R.id.menu_refresh).setVisible(true);
+        findViewById(R.id.progressBar).setVisibility(View.INVISIBLE);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Message message = Message.obtain(handler);
+                message.getData().putString("quotationText", quotation.getText());
+                message.getData().putString("quotationAuthor", quotation.getAuthor());
+                if(using_room.equals("Room")){
+                    boolean exists = null != QuotationRoom.getInstance(getApplicationContext()).quotationDao().getQuotation(quotation.getText());
+                    message.getData().putBoolean("exists", exists);
+                } else {
+                    message.getData().putBoolean("exists",quotationDatabase.exists(quotation));
+                }
+                Log.d("tag1", "run: " + message);
+                message.sendToTarget();
+            }
+        }).start();
+    }
+
+    public boolean networkState(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if(networkInfo == null){
+            return false;
+        }else {
+            return networkInfo.isConnected();
+        }
+    }
 }
