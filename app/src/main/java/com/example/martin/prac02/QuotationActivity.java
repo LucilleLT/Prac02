@@ -3,6 +3,7 @@ package com.example.martin.prac02;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -29,6 +30,7 @@ public class QuotationActivity extends AppCompatActivity {
     boolean addState;
     String using_room;
     Handler handler;
+    QuotationHttpAsyncTask task = new QuotationHttpAsyncTask(this);
 
     QuotationDatabase quotationDatabase = QuotationDatabase.getInstance(this);
 
@@ -41,7 +43,7 @@ public class QuotationActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message inputMessage) {
                 quotationText.setText(inputMessage.getData().getString("quotationText"));
-                authorText.setText(inputMessage.getData().getString("authorText"));
+                authorText.setText(inputMessage.getData().getString("quotationAuthor"));
                 if(inputMessage.getData().getBoolean("exists")){
                     quotationMenu.findItem(R.id.menu_add).setVisible(false);
                 }else{
@@ -57,6 +59,15 @@ public class QuotationActivity extends AppCompatActivity {
             quotationText.setText(savedInstanceState.getString("quotation"));
             authorText.setText(savedInstanceState.getString("author"));
             addState = savedInstanceState.getBoolean("addState");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(task.getStatus() == AsyncTask.Status.RUNNING){
+            task.cancel(true);
+
         }
     }
 
@@ -98,6 +109,7 @@ public class QuotationActivity extends AppCompatActivity {
                 //final Quotation quotationGet = new Quotation(quotationText.getText().toString(), authorText.getText().toString());
                 if(networkState()){
                     QuotationHttpAsyncTask quotationHttpAsyncTask = new QuotationHttpAsyncTask(this);
+                    task = quotationHttpAsyncTask;
                     quotationHttpAsyncTask.execute();
                 }
                 break;

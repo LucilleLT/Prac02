@@ -14,4 +14,9 @@
         <item>@string/room</item>
         <item>@string/sqliteopenhelper</item>
     </string-array>
+
+    <string-array name="language_value">
+        <item>@string/en</item>
+        <item>@string/ru</item>
+    </string-array>
 </resources>

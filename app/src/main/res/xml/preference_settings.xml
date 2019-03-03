@@ -12,11 +12,11 @@
         <ListPreference
 
             android:entries="@array/language"
-            android:entryValues="@array/language"
+            android:entryValues="@array/language_value"
             android:key="language_field"
             android:title="@string/quotation_language"
             android:summary="@string/quotation_language_description"
-            android:defaultValue="@string/idioma_english"/>
+            android:defaultValue="@string/en"/>
         <ListPreference
 
             android:entries="@array/http_request"

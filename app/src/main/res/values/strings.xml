@@ -6,7 +6,7 @@
     <string name="FavButtonText">FAVORITE QUOTATIONS</string>
     <string name="SetButton">SETTINGS</string>
     <string name="AboutButtonText">ABOUT</string>
-    <string name="About">Quotation Shake by\n\n Martin Bernácer Ferrer and Javier López Tadeo\n\n marberf1@inf.upv.es\njalota1@inf.upv.es\n\n2019\n\n\n\n\n\n\n\n\n\n\n\n\nhola</string>
+    <string name="About">Quotation Shake by\n\n Martin Bernácer Ferrer and Javier López Tadeo\n\n marberf1@inf.upv.es\njalota1@inf.upv.es\n\n2019</string>
     <string name="QuotationActivity">Random quotation</string>
     <string name="FavActivity">Favourite quotations</string>
     <string name="SettingsActivity">Settings</string>
@@ -30,6 +30,8 @@
     <string name="menu_clear">Clear all</string>
     <string name="clearAllAlertMessage">Are you sure that you want to delete ALL your favourte quotations?</string>
     <string name="clearAllAlertTitle">Clear all favourites</string>
+    <string name="en" translatable="false">en</string>
+    <string name="ru" translatable="false">ru</string>
 
     <string name="username">User name</string>
     <string name="username_description">Name idetifies the user</string>

@@ -4,7 +4,7 @@
     <string name="FavButtonText">CITAS FAVORITAS</string>
     <string name="SetButton">AJUSTES</string>
     <string name="AboutButtonText">ACERCA DE</string>
-    <string name="About">Quotation Shake por\n\n Martin Bernácer Ferrer and Javier López Tadeo\n\n marberf1@inf.upv.es\\njalota1@inf.upv.es\\n\\n2019\n\n\n\n\n\n\n\n\n\n\n\n\nhola</string>
+    <string name="About">Quotation Shake por\n\n Martin Bernácer Ferrer and Javier López Tadeo\n\n marberf1@inf.upv.es\njalota1@inf.upv.es\n2019</string>
     <string name="QuotationActivity">Cita aleatoria</string>
     <string name="FavActivity">Citas favoritas</string>
     <string name="SettingsActivity">Ajustes</string>
@@ -13,7 +13,7 @@
     <string name="info_quotations">Hola %1s! \nPulsa recargar para obtener una nueva cita</string>
     <string name="sample_q">Esto es una cita de ejemplo %1$d</string>
     <string name="sample_a">Esto es una autor de ejemplo %1$d</string>
-    <string name="idioma_english">Inglés</string>
+    <string name="idioma_english">Ingles</string>
     <string name="idioma_russian">Ruso</string>
     <string name="authorNotFound">El autor no es válido</string>
     <string name="deleteMessage">¿Estas seguro de que quieres eliminar la cita?</string>
@@ -26,16 +26,16 @@
     <string name="menu_clear">Eliminar todos</string>
     <string name="clearAllAlertMessage">¿Estas seguro de que quieres eliminar TODAS tus citas favoritas?</string>
     <string name="clearAllAlertTitle">Eliminar favoritos</string>
-    <string name="username" translatable="false">Nombre de usuario</string>
+    <string name="username">Nombre de usuari</string>
     <string name="username_description">Nombre que identifica al usuario</string>
-    <string name="web_service" translatable="false">Servicio Web</string>
-    <string name="quotation_language" translatable="false">Lenguaje de las citas</string>
+    <string name="web_service">Servicio Web</string>
+    <string name="quotation_language" >Lenguaje de las citas</string>
     <string name="quotation_language_description">Las citas se darán en la frase dada</string>
-    <string name="request_method" translatable="false">Metodo de acceso HTTP</string>
-    <string name="request_method_description" translatable="false">Las peticiones se realizarán usando el método HTTP seleccionado</string>
+    <string name="request_method" >Metodo de acceso HTTP</string>
+    <string name="request_method_description">Las peticiones se realizarán usando el método HTTP seleccionado</string>
     <string name="database">Base de Datos</string>
-    <string name="database_access_method" translatable="false">Método de acceso a la base de datos</string>
-    <string name="database_access_method_description" translatable="false">Se accederá a la base de datos usando el método seleccionado</string>
-    <string name="database_access_title" translatable="false">Método de acceso a la base de datos</string>
-    <string name="database_access_description" translatable="false">Se accederá a la base de datos usando el método seleccionado</string>
+    <string name="database_access_method" >Método de acceso a la base de datos</string>
+    <string name="database_access_method_description" >Se accederá a la base de datos usando el método seleccionado</string>
+    <string name="database_access_title" >Método de acceso a la base de datos</string>
+    <string name="database_access_description" >Se accederá a la base de datos usando el método seleccionado</string>
 </resources>
